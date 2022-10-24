@@ -47,7 +47,7 @@ export class PokemonService {
         .of(pokemonSavedTypes)
         .add(savedTypes);
     } catch (error) {
-      throw new InternalServerErrorException('Error al agregar las categorias');
+      throw new InternalServerErrorException(`Error al agregar las categorias ${error}`);
     }
   }
 
