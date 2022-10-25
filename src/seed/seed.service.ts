@@ -13,7 +13,7 @@ export class SeedService {
     await this.seedPokemonTable();
     await this.updatePokemons();
     await this.seedTypes();
-     this.saveTypes();
+    await this.saveTypes();
     return 'Base de datos restaurada';
   }
 
@@ -49,12 +49,13 @@ export class SeedService {
     return true;
   }
 
-  private saveTypes(){
+  private async saveTypes(){
     const typesSeedPokemon: IPokemonTypes[] = pokemonTypes;
     const insertedPokemonTypes = [];
     typesSeedPokemon.forEach( type => {
       insertedPokemonTypes.push( this.pokemonService.saveCategory( type ) );
     } );
+    await Promise.all( insertedPokemonTypes );
     return true;
     
   }

@@ -31,12 +31,17 @@ export class PokemonService {
   async saveCategory(pokemonTypes: IPokemonTypes) {
     try{
       const savedTypes: Type[] = [];
+      const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name }});
       pokemonTypes.types.forEach(async (type) => {
         savedTypes.push(await this.typeService.findByName(type));
       });
-      const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name }, relations: {types: true} });
-      pokemonSavedTypes.types.push(...savedTypes);
-      await this.pokemonRepository.save(pokemonSavedTypes);
+      
+      await this.pokemonRepository
+      .createQueryBuilder()
+      .relation(Pokemon, 'types')
+      .of(pokemonSavedTypes)
+      .add(savedTypes);
+      
     }catch(error){
       throw new InternalServerErrorException(`Error interno, comunicate con el desarrollador. ${error}`);
     }

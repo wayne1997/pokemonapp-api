@@ -10,7 +10,7 @@ export class SeedController {
   
   
   @Get()
-  populatePokemonTable() {
-    return this.seedService.runSeed();
+  async populatePokemonTable() {
+    return await this.seedService.runSeed();
   }
 }
