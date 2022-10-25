@@ -43,7 +43,7 @@ export class Pokemon {
     })
     image: string;
 
-    @ManyToMany( () => Type, {onDelete: 'CASCADE'} )
+    @ManyToMany( () => Type, {cascade: true} )
     @JoinTable()
     types: Type[]
 

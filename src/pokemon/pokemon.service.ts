@@ -30,7 +30,6 @@ export class PokemonService {
 
   async saveCategory(pokemonTypes: IPokemonTypes) {
     try{
-      
       const savedTypes: Type[] = [];
       pokemonTypes.types.forEach(async (type) => {
         savedTypes.push(await this.typeService.findByName(type));
