@@ -2,11 +2,11 @@
   "name": "pokemon-api",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Jonathan Chiriboga",
   "private": true,
   "license": "UNLICENSED",
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "scripts": {
     "prebuild": "rimraf dist",

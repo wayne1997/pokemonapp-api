@@ -1,5 +1,4 @@
 # compiled output
-/dist
 /node_modules
 /postgres
 /mongo
@@ -11,7 +10,7 @@ pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-
+yarn.lock
 # OS
 .DS_Store
 
@@ -37,3 +36,4 @@ lerna-debug.log*
 
 # Proyect files
 .env
+.env.prod
