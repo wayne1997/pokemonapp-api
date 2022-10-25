@@ -13,7 +13,7 @@ export class SeedService {
     await this.seedPokemonTable();
     await this.updatePokemons();
     await this.seedTypes();
-    await this.saveTypes();
+    //await this.saveTypes();
     return 'Base de datos restaurada';
   }
 
