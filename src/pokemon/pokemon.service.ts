@@ -35,16 +35,11 @@ export class PokemonService {
       pokemonTypes.types.forEach(async (type) => {
         savedTypes.push(await this.typeService.findByName(type));
       });
-      const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name } });
-      // await this.pokemonRepository.createQueryBuilder()
-      //   .relation(Pokemon, 'types')
-      //   .of(pokemonSavedTypes)
-      //   .add(savedTypes);
-
+      const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name }, relations: {types: true} });
       pokemonSavedTypes.types.push(...savedTypes);
       await this.pokemonRepository.save(pokemonSavedTypes);
     }catch(error){
-      throw new InternalServerErrorException(`${error} sembrando los tipos`);
+      throw new InternalServerErrorException(`Error interno, comunicate con el desarrollador. ${error}`);
     }
   }
 
