@@ -29,7 +29,8 @@ export class PokemonService {
 
 
   async saveCategory(pokemonTypes: IPokemonTypes) {
-    
+    try{
+      
       const savedTypes: Type[] = [];
       pokemonTypes.types.forEach(async (type) => {
         savedTypes.push(await this.typeService.findByName(type));
@@ -42,6 +43,9 @@ export class PokemonService {
 
       pokemonSavedTypes.types.push(...savedTypes);
       await this.pokemonRepository.save(pokemonSavedTypes);
+    }catch(error){
+      throw new InternalServerErrorException(`${error} sembrando los tipos`);
+    }
   }
 
   findPokemons( paginationDto: PaginationDto ) {
