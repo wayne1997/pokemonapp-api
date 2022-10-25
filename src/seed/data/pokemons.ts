@@ -82,7 +82,7 @@ export const PokemonsData: IPokemon[] =
         {
             id: '8f474a3f-a35d-4d12-9caf-55741ac0f198',
             name: 'pikachu',
-            description: '	Este inteligente Pokémon tuesta las duras BAYAS con electricidad para hacerlas más comestibles.',
+            description: 'Este inteligente Pokémon tuesta las duras BAYAS con electricidad para hacerlas más comestibles.',
             size: 0.4,
             weigth: 6.0,
             image: 'https://res.cloudinary.com/dj6yveo5u/image/upload/v1666643345/pikachu_front_default_a6839u.png',
