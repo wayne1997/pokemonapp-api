@@ -34,11 +34,14 @@ export class PokemonService {
       pokemonTypes.types.forEach(async (type) => {
         savedTypes.push(await this.typeService.findByName(type));
       });
-      const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name } });
-      await this.pokemonRepository.createQueryBuilder()
-        .relation(Pokemon, 'types')
-        .of(pokemonSavedTypes)
-        .add(savedTypes);
+      const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name }, relations: {types: true} });
+      // await this.pokemonRepository.createQueryBuilder()
+      //   .relation(Pokemon, 'types')
+      //   .of(pokemonSavedTypes)
+      //   .add(savedTypes);
+
+      pokemonSavedTypes.types.push(...savedTypes);
+      await this.pokemonRepository.save(pokemonSavedTypes);
   }
 
   findPokemons( paginationDto: PaginationDto ) {

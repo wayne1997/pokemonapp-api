@@ -50,7 +50,6 @@ export class SeedService {
   }
 
   private async saveTypes(){
-
     const typesSeedPokemon: IPokemonTypes[] = pokemonTypes;
     const insertedPokemonTypes = [];
     typesSeedPokemon.forEach( type => {
