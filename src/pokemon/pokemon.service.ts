@@ -41,7 +41,7 @@ export class PokemonService {
       .relation(Pokemon, 'types')
       .of(pokemonSavedTypes)
       .add(savedTypes);
-      
+      return;
     }catch(error){
       throw new InternalServerErrorException(`Error interno, comunicate con el desarrollador. ${error}`);
     }
