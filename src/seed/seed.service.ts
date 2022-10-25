@@ -57,7 +57,6 @@ export class SeedService {
     } );
     await Promise.all( insertedPokemonTypes );
     return true;
-    
   }
 
 }
