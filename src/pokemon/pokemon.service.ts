@@ -29,26 +29,16 @@ export class PokemonService {
 
 
   async saveCategory(pokemonTypes: IPokemonTypes) {
-    try {
-
-      //Obtener las categorias
+    
       const savedTypes: Type[] = [];
       pokemonTypes.types.forEach(async (type) => {
         savedTypes.push(await this.typeService.findByName(type));
       });
-
-      //Obtener el pokemon
       const pokemonSavedTypes = await this.pokemonRepository.findOne({ where: { name: pokemonTypes.name } });
-
-      //Insertar los tipos
-
       await this.pokemonRepository.createQueryBuilder()
         .relation(Pokemon, 'types')
         .of(pokemonSavedTypes)
         .add(savedTypes);
-    } catch (error) {
-      throw new InternalServerErrorException(`Error al agregar las categorias ${error}`);
-    }
   }
 
   findPokemons( paginationDto: PaginationDto ) {
