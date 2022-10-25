@@ -26,6 +26,6 @@ async function main() {
   SwaggerModule.setup('pokeapi/documentation', app, document);
 
   await app.listen(process.env.PORT);
-  logger.log(`App runnin on port ${ process.env.PORT }`);
+  logger.log(`App running on port ${ process.env.PORT }`);
 }
 main();
